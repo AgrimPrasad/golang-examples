@@ -1,13 +1,13 @@
 package main
 
 import (
-	"context"
 	"math"
 	"net"
 	"os"
 	"time"
 
 	log "github.com/sirupsen/logrus"
+	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
 	pb "github.com/mycodesmells/golang-examples/k8s/grpc-pooling/proto/message"
@@ -50,7 +50,8 @@ func (eS employeeServer) Work(ctx context.Context, req *pb.JobRequest) (*pb.JobR
 	result := math.Pow(float64(base), float64(exponent))
 
 	select {
-	case <-time.After(time.Second * 10):
+	case <-time.After(time.Second * 1):
+		log.Println("worker finished after 1 second")
 		return &pb.JobResponse{
 			Id:       req.GetId(),
 			WorkerId: eS.WorkerID,

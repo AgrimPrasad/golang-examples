@@ -12,7 +12,7 @@ spec:
         app: employee
     spec:
       containers:
-        - image: mcs/lb-employee:0.0.1
+        - image: agrim/lb-employee:v2
           imagePullPolicy: IfNotPresent
           name: employee
           ports:

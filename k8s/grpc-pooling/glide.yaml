@@ -1,0 +1,13 @@
+package: github.com/mycodesmells/golang-examples/k8s/grpc-pooling
+import:
+- package: github.com/golang/protobuf
+  subpackages:
+  - proto
+- package: github.com/pkg/errors
+- package: github.com/processout/grpc-go-pool
+- package: github.com/satori/go.uuid
+- package: github.com/sirupsen/logrus
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: google.golang.org/grpc

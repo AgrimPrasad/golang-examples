@@ -18,12 +18,12 @@ compile/employee:
 build/employer: compile/employer
 	eval $(minikube docker-env)
 	echo "Building employer Docker image"
-	docker build -t mcs/lb-employer employer/
+	docker build -t agrim/lb-employer:v1 employer/
 
 build/employee: compile/employee
 	eval $(minikube docker-env)
 	echo "Building employee Docker image"
-	docker build -t mcs/lb-employee employee/
+	docker build -t agrim/lb-employee:v2 employee/
 
 k8s-docker-env:
 	eval $(minikube docker-env)
@@ -35,3 +35,6 @@ deploy/employer: build/employer
 deploy/employee: build/employee
 	kubectl apply -f employee/manifests/employee.yaml
 	kubectl apply -f employee/manifests/employee-svc.yaml
+
+dep:
+	glide up -v

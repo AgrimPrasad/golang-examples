@@ -79,10 +79,20 @@ func main() {
 			return
 		}
 
-		client := pb.NewWorkerClient(conn)
+		client := pb.NewWorkerClient(conn.ClientConn)
+
+		workUUID, err := uuid.NewV4()
+		if err != nil {
+			msg := "invalid uuid"
+			l.Warnln(errors.Wrap(err, msg))
+
+			rw.WriteHeader(http.StatusInternalServerError)
+			rw.Write([]byte(msg))
+			return
+		}
 
 		workResp, err := client.Work(ctx, &pb.JobRequest{
-			Id:       uuid.NewV4().String(),
+			Id:       workUUID.String(),
 			Base:     float32(base),
 			Exponent: float32(exponent),
 		})

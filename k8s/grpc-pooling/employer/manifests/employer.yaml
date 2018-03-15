@@ -12,7 +12,7 @@ spec:
         app: employer
     spec:
       containers:
-        - image: mcs/lb-employer:adhoc
+        - image: agrim/lb-employer:v1
           imagePullPolicy: IfNotPresent
           name: employer
           ports:
